@@ -43,7 +43,7 @@ class Form {
     this.outerElement = document.createElement('div')
     this.outerElement.setAttribute('class', 'form')
 
-    this.inputs = this.inputsData.map(({ label, type, id }) => {
+    const inputs = this.inputsData.map(({ label, type, id }) => {
       const divEl = document.createElement('div')
       divEl.setAttribute('class', 'input-section')
 
@@ -70,7 +70,7 @@ class Form {
 
     divEl.append(this.submitButton)
 
-    this.inputs.forEach(input => this.outerElement.append(input))
+    inputs.forEach(input => this.outerElement.append(input))
 
     this.outerElement.append(divEl)
   }
