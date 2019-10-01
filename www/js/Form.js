@@ -1,10 +1,15 @@
 class Form {
 
-  static submit = () => console.log({
-    name: document.querySelector('input#name').value,
-    email: [document.querySelector('input#email').value],
-    telephone: [document.querySelector('input#telephone').value]
-  })
+  static submit = () => {
+    let data = {
+      name: document.querySelector('input#name').value,
+      email: [document.querySelector('input#email').value],
+      telephone: [document.querySelector('input#telephone').value]
+    }
+    data = JSON.stringify(data)
+    localStorage.setItem('user', data)
+    console.log(JSON.parse(localStorage['user']))
+  }
 
   constructor() {
     this.inputsData = [
@@ -24,7 +29,7 @@ class Form {
         id: 'telephone'
       },
     ]
-    
+
     this.createForm()
   }
 
