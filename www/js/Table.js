@@ -13,6 +13,19 @@ class Table {
     this.outerEl = document.createElement('div')
     this.outerEl.setAttribute('class', 'table-div')
 
+    const headingDiv = document.createElement('div')
+    headingDiv.setAttribute('class', 'table-div-heading')
+
+    const contactsSymbol = document.createElement('i')
+    contactsSymbol.setAttribute('class', 'far fa-address-card')
+
+    const h3 = document.createElement('h3')
+    h3.innerText = 'Kontakter'
+
+    headingDiv.append(contactsSymbol)
+    headingDiv.append(h3)
+    this.outerEl.append(headingDiv)
+
     this.table = document.createElement('table')
     const thead = document.createElement('thead')
     const tr = document.createElement('tr')
@@ -60,6 +73,6 @@ class Table {
 
 }
 
-const table = new Table()
+/* const table = new Table()
 
-document.querySelector('body').append(table.outerEl)
+document.querySelector('body').append(table.outerEl) */

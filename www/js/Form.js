@@ -40,8 +40,21 @@ class Form {
   }
 
   createForm() {
-    this.outerElement = document.createElement('div')
-    this.outerElement.setAttribute('class', 'form-div')
+    this.outerEl = document.createElement('div')
+    this.outerEl.setAttribute('class', 'form-div')
+
+    const headingDiv = document.createElement('div')
+    headingDiv.setAttribute('class', 'form-div-heading')
+
+    const contactsSymbol = document.createElement('i')
+    contactsSymbol.setAttribute('class', 'fas fa-user-plus')
+
+    const h3 = document.createElement('h3')
+    h3.innerText = 'Lägg till kontakt'
+
+    headingDiv.append(contactsSymbol)
+    headingDiv.append(h3)
+    this.outerEl.append(headingDiv)
 
     const inputs = this.inputsData.map(({ label, type, id }) => {
       const divEl = document.createElement('div')
@@ -70,13 +83,13 @@ class Form {
 
     divEl.append(this.submitButton)
 
-    inputs.forEach(input => this.outerElement.append(input))
+    inputs.forEach(input => this.outerEl.append(input))
 
-    this.outerElement.append(divEl)
+    this.outerEl.append(divEl)
   }
 
 }
 
-const form = new Form()
+/* const form = new Form()
 
-document.querySelector('body').append(form.outerElement)
+document.querySelector('body').append(form.outerEl) */
