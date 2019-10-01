@@ -46,13 +46,13 @@ class Form {
     const headingDiv = document.createElement('div')
     headingDiv.setAttribute('class', 'form-div-heading')
 
-    const contactsSymbol = document.createElement('i')
-    contactsSymbol.setAttribute('class', 'fas fa-user-plus')
+    const addContactSymbol = document.createElement('i')
+    addContactSymbol.setAttribute('class', 'fas fa-user-plus')
 
     const h3 = document.createElement('h3')
     h3.innerText = 'Lägg till kontakt'
 
-    headingDiv.append(contactsSymbol)
+    headingDiv.append(addContactSymbol)
     headingDiv.append(h3)
     this.outerEl.append(headingDiv)
 
@@ -77,11 +77,15 @@ class Form {
     const divEl = document.createElement('div')
     divEl.setAttribute('class', 'input-section')
 
-    this.submitButton = document.createElement('button')
-    this.submitButton.setAttribute('onclick', 'Form.submit()')
-    this.submitButton.innerText = 'Spara'
+    const submitButton = document.createElement('button')
+    submitButton.setAttribute('onclick', 'Form.submit()')
+    submitButton.innerText = 'Spara'
 
-    divEl.append(this.submitButton)
+    const saveSymbol = document.createElement('i')
+    saveSymbol.setAttribute('class', 'far fa-save')
+    submitButton.prepend(saveSymbol)
+
+    divEl.append(submitButton)
 
     inputs.forEach(input => this.outerEl.append(input))
 
