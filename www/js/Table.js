@@ -11,6 +11,7 @@ class Table {
 
   createTable() {
     this.outerEl = document.createElement('div')
+    this.outerEl.setAttribute('class', 'table-div')
 
     this.table = document.createElement('table')
     const thead = document.createElement('thead')
@@ -34,7 +35,7 @@ class Table {
     const tbody = document.createElement('tbody')
 
     let contacts = JSON.parse(localStorage.contacts)
-    console.log(contacts)
+
     contacts = contacts.map(({ name, email, telephone }) => {
       const tr = document.createElement('tr')
 

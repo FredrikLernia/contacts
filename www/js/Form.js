@@ -41,7 +41,7 @@ class Form {
 
   createForm() {
     this.outerElement = document.createElement('div')
-    this.outerElement.setAttribute('class', 'form')
+    this.outerElement.setAttribute('class', 'form-div')
 
     const inputs = this.inputsData.map(({ label, type, id }) => {
       const divEl = document.createElement('div')

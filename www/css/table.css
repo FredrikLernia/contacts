@@ -1,0 +1,28 @@
+table {
+  padding: 10px;
+  border-spacing: 0;
+  font-size: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+th {
+  border-bottom: 1px solid #ddd;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+tbody > tr {
+  cursor: pointer;
+}
+
+tbody > tr:nth-child(even) {
+  background-color: #eee;
+}
+
+tbody > tr:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
