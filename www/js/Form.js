@@ -6,9 +6,15 @@ class Form {
       email: [document.querySelector('input#email').value],
       telephone: [document.querySelector('input#telephone').value]
     }
-    data = JSON.stringify(data)
-    localStorage.setItem('user', data)
-    console.log(JSON.parse(localStorage['user']))
+
+    try {
+      let contacts = JSON.parse(localStorage.contacts)
+      contacts.push(data)
+      localStorage.setItem('contacts', JSON.stringify(contacts))
+    }
+    catch(e) {
+      localStorage.setItem('contacts', JSON.stringify([data]))
+    }
   }
 
   constructor() {
