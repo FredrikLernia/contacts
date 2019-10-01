@@ -1,7 +1,7 @@
 class Form {
 
   constructor() {
-    this.inputs = [
+    this.inputsData = [
       {
         label: 'Namn',
         type: 'text',
@@ -23,11 +23,19 @@ class Form {
   }
 
   createForm() {
-    this.html = this.inputs.map(({ label, type, id }) => `
+    this.inputs = this.inputsData.map(({ label, type, id }) => `
       <label for="${id}">${label}</label><input type="${type}" id="${id}">
     `)
 
-    this.outerElement.innerHTML = this.html.join('')
+    this.submitButton = document.createElement('button')
+    this.submitButton.innerText = 'Spara'
+
+    this.outerElement.innerHTML = this.inputs.join('')
+    this.outerElement.append(this.submitButton)
+  }
+
+  submitForm() {
+
   }
 
 }
