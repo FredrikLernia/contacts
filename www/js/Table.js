@@ -39,6 +39,9 @@ class Table {
     this.table.append(thead)
 
     this.outerEl.append(this.table)
+
+    const main = document.querySelector('main')
+    main.append(this.outerEl)
   }
 
   appendContacts() {
@@ -49,6 +52,7 @@ class Table {
 
       contacts = contacts.map(({ id, name, email, telephone }) => {
         const tr = document.createElement('tr')
+        tr.setAttribute('id', id)
 
         const tdName = document.createElement('td')
         tdName.innerText = name
@@ -64,7 +68,7 @@ class Table {
         const deleteSymbol = document.createElement('i')
         deleteSymbol.setAttribute('id', id)
         deleteSymbol.setAttribute('class', 'fas fa-user-times delete')
-        deleteSymbol.setAttribute('id', id)
+        // deleteSymbol.setAttribute('id', id)
 
         tdEdit.append(deleteSymbol)
 
