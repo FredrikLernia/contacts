@@ -54,3 +54,8 @@ td > i {
   font-size: 18px;
   color: red;
 }
+
+.table-div > .empty-store {
+  padding: 10px;
+  font-style: italic;
+}
