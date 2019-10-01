@@ -1,5 +1,11 @@
 class Form {
 
+  static submit = () => console.log({
+    name: document.querySelector('input#name').value,
+    email: [document.querySelector('input#email').value],
+    telephone: [document.querySelector('input#telephone').value]
+  })
+
   constructor() {
     this.inputsData = [
       {
@@ -16,26 +22,46 @@ class Form {
         label: 'Telefon',
         type: 'text',
         id: 'telephone'
-      }
+      },
     ]
-    this.outerElement = document.createElement('div')
+    
     this.createForm()
   }
 
   createForm() {
-    this.inputs = this.inputsData.map(({ label, type, id }) => `
-      <label for="${id}">${label}</label><input type="${type}" id="${id}">
-    `)
+    this.outerElement = document.createElement('div')
+    this.outerElement.setAttribute('class', 'form')
+
+    this.inputs = this.inputsData.map(({ label, type, id }) => {
+      const divEl = document.createElement('div')
+      divEl.setAttribute('class', 'input-section')
+
+      const labelEl = document.createElement('label')
+      labelEl.setAttribute('for', id)
+      labelEl.innerText = label
+
+      const inputEl = document.createElement('input')
+      inputEl.setAttribute('type', type)
+      inputEl.setAttribute('id', id)
+
+      divEl.append(labelEl)
+      divEl.append(inputEl)
+
+      return divEl
+    })
+
+    const divEl = document.createElement('div')
+    divEl.setAttribute('class', 'input-section')
 
     this.submitButton = document.createElement('button')
+    this.submitButton.setAttribute('onclick', 'Form.submit()')
     this.submitButton.innerText = 'Spara'
 
-    this.outerElement.innerHTML = this.inputs.join('')
-    this.outerElement.append(this.submitButton)
-  }
+    divEl.append(this.submitButton)
 
-  submitForm() {
+    this.inputs.forEach(input => this.outerElement.append(input))
 
+    this.outerElement.append(divEl)
   }
 
 }
