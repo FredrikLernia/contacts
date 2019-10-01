@@ -1,12 +1,9 @@
-// window.addEventListener('click', e => console.log(e))
-// console.log(window)
-
 class Table {
 
   constructor() {
-    this.headings = ['Namn', 'E-post', 'Telefon']
+    this.headings = ['Namn', 'E-post', 'Telefon', '']
     this.createTable()
-    this.appendContacts()
+    // this.appendContacts()
   }
 
   createTable() {
@@ -47,9 +44,10 @@ class Table {
   appendContacts() {
     const tbody = document.createElement('tbody')
 
+    // Must do a try/catch for this
     let contacts = JSON.parse(localStorage.contacts)
 
-    contacts = contacts.map(({ name, email, telephone }) => {
+    contacts = contacts.map(({ id, name, email, telephone }) => {
       const tr = document.createElement('tr')
 
       const tdName = document.createElement('td')
@@ -61,9 +59,19 @@ class Table {
       const tdTelephone = document.createElement('td')
       tdTelephone.innerText = telephone[0]
 
+      const tdEdit = document.createElement('td')
+
+      const deleteSymbol = document.createElement('i')
+      deleteSymbol.setAttribute('id', id)
+      deleteSymbol.setAttribute('class', 'fas fa-user-times delete')
+      deleteSymbol.setAttribute('id', id)
+
+      tdEdit.append(deleteSymbol)
+
       tr.append(tdName)
       tr.append(tdEmail)
       tr.append(tdTelephone)
+      tr.append(tdEdit)
 
       tbody.append(tr)
     })
@@ -72,7 +80,3 @@ class Table {
   }
 
 }
-
-/* const table = new Table()
-
-document.querySelector('body').append(table.outerEl) */

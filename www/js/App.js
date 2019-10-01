@@ -1,3 +1,11 @@
+window.addEventListener('click', e => {
+  if (e.target.className.includes('delete')) {
+    const contacts = JSON.parse(localStorage.contacts)
+    contacts.splice(contacts.findIndex(contact => contact.id === +e.target.id), 1)
+    localStorage.setItem('contacts', contacts)
+  }
+})
+
 class App {
 
   constructor() {

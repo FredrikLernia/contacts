@@ -1,7 +1,11 @@
 class Form {
 
   static submit = () => {
+    const time = new Date().getTime()
+
     let data = {
+      id: time,
+      added: time, 
       name: document.querySelector('input#name').value,
       email: [document.querySelector('input#email').value],
       telephone: [document.querySelector('input#telephone').value]

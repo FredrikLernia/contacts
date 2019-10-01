@@ -49,3 +49,8 @@ tbody > tr:nth-child(even) {
 tbody > tr:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+td > i {
+  font-size: 18px;
+  color: red;
+}
