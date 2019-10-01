@@ -1,9 +1,32 @@
+.table-div {
+  border: 2px solid #333;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.table-div-heading {
+  background-color: #333;
+  color: #f5f5f5;
+}
+
+.table-div-heading > i {
+  font-size: 24px;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.table-div-heading > h3 {
+  display: inline-block;
+  margin: 0;
+  vertical-align: middle;
+}
+
 table {
+  width: 100%;
   padding: 10px;
   border-spacing: 0;
   font-size: 12px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
 }
 
 th {
