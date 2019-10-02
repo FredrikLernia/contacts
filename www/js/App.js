@@ -4,8 +4,8 @@ class App {
 
   constructor() {
     this.addInstanceId()
-    this.createDOM()
-    this.createEventListener()
+    // this.createDOM()
+    // this.createEventListener()
   }
 
   createEventListener() {
@@ -20,10 +20,11 @@ class App {
   }
 
   createDOM() {
-    const main = document.createElement('main')
+    this.createEl('main', 'body')
+    // const main = document.createElement('main')
     // main.append(this.table)
 
-    document.querySelector('body').append(main)
+    // document.querySelector('body').append(main)
 
     // this.form = new Form().outerEl
     // main.append(this.form)
@@ -67,4 +68,4 @@ class App {
 
 }
 
-new App()
+new App().createDOM()
