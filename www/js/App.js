@@ -43,26 +43,20 @@ class App {
   createEl(tagName, parent, attributes = '') {
     const el = document.createElement(tagName)
 
-    if (attributes) {
-      Object.keys(attributes).forEach(attribute => el.setAttribute(attribute, attributes[attribute]))
-    }
+    if (attributes) Object.keys(attributes).forEach(attribute => el.setAttribute(attribute, attributes[attribute]))
 
-    if (typeof parent === 'string') {
-      document.querySelector(parent).append(el)
-    }
-    else {
-      parent.append(el)
-    }
+    if (typeof parent === 'string') document.querySelector(parent).append(el)
+    else parent.append(el)
 
     return el
   }
 
-  getContacts() {
+  loadContacts() {
     try {
-      JSON.parse(localStorage.contacts)
+      return JSON.parse(localStorage.contacts)
     }
     catch(e) {
-
+      return 'Det finns inga kontakter tillagda ännu...'
     }
   }
 
