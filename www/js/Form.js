@@ -24,7 +24,7 @@ class Form extends App {
     })
 
     const inputSection = this.createEl('div', formSection, { 'class': 'input-section' })
-    this.createEl('button', inputSection, { 'class': 'save-button' }).innerHTML = '<i class="far fa-save"></i> Spara'
+    this.createEl('button', inputSection, { 'class': 'save-contact' }).innerHTML = '<i class="far fa-save"></i> Spara'
   }
 
 }

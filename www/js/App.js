@@ -23,9 +23,9 @@ class App {
 
   listen() {
     window.addEventListener('click', e => {
-      if (e.target.className.includes('delete-contact')) {
-        this.deleteContact(e.target.id, this.contacts.instanceId)
-      }
+      if (e.target.className.includes('save-contact')) this.saveContact(e)
+
+      if (e.target.className.includes('delete-contact')) this.deleteContact(e.target.id, this.contacts.instanceId)
     })
   }
 
@@ -64,15 +64,37 @@ class App {
     }
   }
 
+  saveContact(e) {
+    const time = new Date().getTime()
+
+    const data = {
+      id: time,
+      name: document.querySelector('input#name').value,
+      email: [document.querySelector('input#email').value],
+      telephone: [document.querySelector('input#telephone').value]
+    }
+
+    try {
+      let contacts = JSON.parse(localStorage.contacts)
+      contacts.push(data)
+      localStorage.setItem('contacts', JSON.stringify(contacts))
+    }
+    catch(e) {
+      localStorage.setItem('contacts', JSON.stringify([data]))
+    }
+  }
+
   deleteContact(id, instanceId) {
-    const divToRemove = document.querySelector(`[data-instance-id="${instanceId}"]`)
-    if (divToRemove) {
+    // const divToRemove = document.querySelector(`[data-instance-id="${instanceId}"]`)
+    // if (divToRemove) {
       const contacts = this.loadContacts()
       contacts.splice(contacts.findIndex(contact => contact.id === +id), 1)
       localStorage.setItem('contacts', JSON.stringify(contacts))
-      divToRemove.outerHTML = ''
+      // divToRemove.outerHTML = ''
+      document.querySelector(`[data-instance-id="${instanceId}"]`).outerHTML = ''
+
       this.contacts = new Contacts()
-    }
+    // }
   }
 
 }
