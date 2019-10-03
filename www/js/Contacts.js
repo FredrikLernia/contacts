@@ -2,13 +2,12 @@ class Contacts extends App {
 
   constructor() {
     super()
-    // this.listen()
     this.tableHeadings = ['Namn', 'E-post', 'Telefon', '']
     this.createSection()
   }
 
   createSection() {
-    const contactsSection = this.createEl('div', 'div.contacts', { 'class': 'contacts-section', 'data-instance-id': this.instanceId })
+    const contactsSection = this.createEl('div', 'div.contacts', { 'class': 'contacts-section' })
 
     const contactsHeader = this.createEl('div', contactsSection, { 'class': 'contacts-header' })
     this.createEl('i', contactsHeader, { 'class': 'far fa-address-card' })
@@ -37,5 +36,3 @@ class Contacts extends App {
   }
 
 }
-
-// new Contacts()

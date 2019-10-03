@@ -1,24 +1,7 @@
-/* const arr = [
-  {
-    id: 1,
-    name: 'Hasse',
-    email: ['hasse@email.com'],
-    telephone: ['071-293 87 44', '074-335 54 34']
-  },
-  {
-    id: 2,
-    name: 'Lasse',
-    email: ['lasse@email.com'],
-    telephone: ['074-423 22 54']
-  }
-]
-
-localStorage.setItem('contacts', JSON.stringify(arr)) */
-
 class App {
 
   constructor() {
-    this.addInstanceId()
+    
   }
 
   createDOM() {
@@ -45,12 +28,6 @@ class App {
 
       if (e.target.className.includes('delete-contact')) this.deleteContact(e.target.id, this.contacts.instanceId)
     })
-  }
-
-  addInstanceId() {
-    App.co = App.co || 0
-    this.instanceId = App.co
-    App.co++
   }
 
   createEl(tagName, parent, attributes = '') {
@@ -93,7 +70,7 @@ class App {
     const newInput = { type: 'text', className: `${id}-input`, id: `${id}${inputId}`, value: '' }
     inputSection.inputs.push(newInput)
 
-    document.querySelector(`[data-instance-id="${instanceId}"]`).outerHTML = ''
+    document.querySelector('div.form-section').outerHTML = ''
     this.form = new Form(this.inputSections)
   }
 
@@ -141,7 +118,7 @@ class App {
     contacts.splice(contacts.findIndex(contact => contact.id === +id), 1)
     localStorage.setItem('contacts', JSON.stringify(contacts))
 
-    document.querySelector(`[data-instance-id="${instanceId}"]`).outerHTML = ''
+    document.querySelector('div.contacts-section').outerHTML = ''
     this.contacts = new Contacts()
   }
 
