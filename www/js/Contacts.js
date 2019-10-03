@@ -2,6 +2,7 @@ class Contacts extends App {
 
   constructor() {
     super()
+    // this.listen()
     this.tableHeadings = ['Namn', 'E-post', 'Telefon', '']
     this.createSection()
   }
@@ -30,10 +31,11 @@ class Contacts extends App {
       this.createEl('td', tr).innerText = name
       this.createEl('td', tr).innerText = email.join('\n')
       this.createEl('td', tr).innerText = telephone.join('\n')
-      this.createEl('td', tr).innerHTML = `<i class="fas fa-user-times" id="${id}"></i>`
+      const editTd = this.createEl('td', tr)
+      this.createEl('i', editTd, { 'class': 'fas fa-user-times delete-contact', 'id': id })
     })
   }
 
 }
 
-new Contacts()
+// new Contacts()

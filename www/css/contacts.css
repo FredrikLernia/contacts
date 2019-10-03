@@ -38,17 +38,9 @@ th, td {
   text-align: left;
 }
 
-/* tbody > tr {
-  cursor: pointer;
-} */
-
 tbody > tr:nth-child(even) {
   background-color: #eee;
 }
-
-/* tbody > tr:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-} */
 
 td > i {
   font-size: 18px;
