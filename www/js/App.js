@@ -75,14 +75,13 @@ class App {
   }
 
   loadContacts() {
-    // returnera false och skriv ut meddelande i contacts istället (för fler användningsområden)
-    if (localStorage.contacts === '[]') return 'Det finns inga kontakter tillagda ännu...'
+    if (localStorage.contacts === '[]') return false
 
     try {
       return JSON.parse(localStorage.contacts)
     }
     catch (e) {
-      return 'Det finns inga kontakter tillagda ännu...'
+      return false
     }
   }
 
