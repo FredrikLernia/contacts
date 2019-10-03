@@ -28,12 +28,12 @@ class App {
     this.createEl('div', main, { 'class': 'contacts' })
 
     this.inputSections = [
-      { label: 'Namn', id: 'name', inputs: [{ type: 'text', className: 'name-input', id: 'name' }] },
-      { label: 'Epost', id: 'email', inputs: [{ type: 'text', className: 'email-input', id: 'email'}] },
-      { label: 'Telefon', id: 'telephone', inputs: [{ type: 'text', className: 'telephone-input', id: 'telephone' }] }
+      { label: 'Namn', id: 'name', inputs: [{ type: 'text', className: 'name-input', id: 'name', value: '' }] },
+      { label: 'Epost', id: 'email', inputs: [{ type: 'text', className: 'email-input', id: 'email', value: '' }] },
+      { label: 'Telefon', id: 'telephone', inputs: [{ type: 'text', className: 'telephone-input', id: 'telephone', value: '' }] }
     ]
-    this.form = new Form(this.inputSections)
 
+    this.form = new Form(this.inputSections)
     this.contacts = new Contacts()
   }
 
@@ -64,11 +64,35 @@ class App {
     return el
   }
 
-  addInputSection(id, instanceId) {
-    const inputSection = this.inputSections.find(input => input.id === id)
+  readForm() {
+    const name = document.querySelector('input#name').value
+
+    const emailSectionEls = document.querySelector('div#input-section-email').children
+    const email = []
+      .filter.call(emailSectionEls, input => input.tagName === 'INPUT')
+      .map(input => input.value)
+
+    const telephoneSectionEls = document.querySelector('div#input-section-telephone').children
+    const telephone = []
+      .filter.call(telephoneSectionEls, input => input.tagName === 'INPUT')
+      .map(input => input.value)
+
+    return { name, email, telephone }
+  }
+
+  async addInputSection(id, instanceId) {
+    const inputValues = await this.readForm()
+    const [name, email, telephone] = this.inputSections
+
+    name.inputs[0].value = inputValues.name
+    email.inputs.forEach((input, i) => input.value = inputValues.email[i])
+    telephone.inputs.forEach((input, i) => input.value = inputValues.telephone[i])
+
+    const inputSection = this.inputSections.find(section => section.id === id)
     const inputId = inputSection.inputs.length + 1
-    const newInput = { type: 'text', className: `${id}-input`, id: `${id}${inputId}` }
+    const newInput = { type: 'text', className: `${id}-input`, id: `${id}${inputId}`, value: '' }
     inputSection.inputs.push(newInput)
+
     document.querySelector(`[data-instance-id="${instanceId}"]`).outerHTML = ''
     this.form = new Form(this.inputSections)
   }
@@ -85,15 +109,11 @@ class App {
     }
   }
 
-  saveContact(e) {
+  async saveContact(e) {
     const time = new Date().getTime()
 
-    const data = {
-      id: time,
-      name: document.querySelector('input#name').value,
-      email: [document.querySelector('input#email').value],
-      telephone: [document.querySelector('input#telephone').value]
-    }
+    const data = await this.readForm()
+    data.id = time
 
     try {
       let contacts = JSON.parse(localStorage.contacts)
@@ -103,19 +123,26 @@ class App {
     catch(e) {
       localStorage.setItem('contacts', JSON.stringify([data]))
     }
+
+    this.inputSections = [
+      { label: 'Namn', id: 'name', inputs: [{ type: 'text', className: 'name-input', id: 'name', value: '' }] },
+      { label: 'Epost', id: 'email', inputs: [{ type: 'text', className: 'email-input', id: 'email', value: '' }] },
+      { label: 'Telefon', id: 'telephone', inputs: [{ type: 'text', className: 'telephone-input', id: 'telephone', value: '' }] }
+    ]
+
+    document.querySelector('div.form-section').outerHTML = ''
+    this.form = new Form(this.inputSections)
+    document.querySelector('div.contacts-section').outerHTML = ''
+    this.contacts = new Contacts()
   }
 
-  deleteContact(id, instanceId) {
-    // const divToRemove = document.querySelector(`[data-instance-id="${instanceId}"]`)
-    // if (divToRemove) {
-      const contacts = this.loadContacts()
-      contacts.splice(contacts.findIndex(contact => contact.id === +id), 1)
-      localStorage.setItem('contacts', JSON.stringify(contacts))
-      // divToRemove.outerHTML = ''
-      document.querySelector(`[data-instance-id="${instanceId}"]`).outerHTML = ''
+  async deleteContact(id, instanceId) {
+    const contacts = await this.loadContacts()
+    contacts.splice(contacts.findIndex(contact => contact.id === +id), 1)
+    localStorage.setItem('contacts', JSON.stringify(contacts))
 
-      this.contacts = new Contacts()
-    // }
+    document.querySelector(`[data-instance-id="${instanceId}"]`).outerHTML = ''
+    this.contacts = new Contacts()
   }
 
 }

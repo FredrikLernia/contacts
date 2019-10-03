@@ -34,7 +34,7 @@ class Form extends App {
     this.inputSections.forEach(({ label, id, inputs }) => {
       const inputSection = this.createEl('div', formSection, { 'class': 'input-section', id: `input-section-${id}` })
       this.createEl('label', inputSection, { 'for': id }).innerText = label
-      inputs.forEach(({ type, className, id }) => this.createEl('input', inputSection, { type, 'class': className, id }))
+      inputs.forEach(({ type, className, id, value }) => this.createEl('input', inputSection, { type, 'class': className, id, value }))
 
       if (id === 'email' || id === 'telephone') this.createEl('i', inputSection, { 'class': 'fas fa-plus-circle add-input-field', id })
     })
