@@ -8,7 +8,7 @@ class Contacts extends App {
   }
 
   createSection() {
-    const contactsSection = this.createEl('div', 'main', { 'class': 'contacts-section', 'data-instance-id': this.instanceId })
+    const contactsSection = this.createEl('div', 'div.contacts', { 'class': 'contacts-section', 'data-instance-id': this.instanceId })
 
     const contactsHeader = this.createEl('div', contactsSection, { 'class': 'contacts-header' })
     this.createEl('i', contactsHeader, { 'class': 'far fa-address-card' })
