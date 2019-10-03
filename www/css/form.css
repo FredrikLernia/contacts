@@ -27,12 +27,12 @@
   padding: 10px;
 }
 
-label {
+.input-section > label {
   display: block;
   padding-bottom: 7px;
 }
 
-input {
+.input-section > input {
   width: 100%;
   padding: 7px;
   border: 1px solid #ddd;
@@ -40,7 +40,14 @@ input {
   font-size: 16px;
 }
 
-button {
+.input-section > i {
+  margin-top: 7px;
+  color: rgb(38, 117, 1);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.input-section > button {
   width: 100%;
   padding: 10px;
   background-color: rgb(38, 117, 1);
@@ -51,11 +58,11 @@ button {
   font-weight: bold;
 }
 
-button > i {
+.input-section > button > i {
   padding-right: 8px;
 }
 
-button:hover {
+.input-section > button:hover {
   background-color: rgb(28, 88, 0);
 }
 

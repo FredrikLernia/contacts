@@ -21,19 +21,19 @@ class App {
     this.addInstanceId()
   }
 
+  createDOM() {
+    this.listen()
+    this.createEl('main', 'body')
+    this.form = new Form()
+    this.contacts = new Contacts()
+  }
+
   listen() {
     window.addEventListener('click', e => {
       if (e.target.className.includes('save-contact')) this.saveContact(e)
 
       if (e.target.className.includes('delete-contact')) this.deleteContact(e.target.id, this.contacts.instanceId)
     })
-  }
-
-  createDOM() {
-    this.listen()
-    this.createEl('main', 'body')
-    this.form = new Form()
-    this.contacts = new Contacts()
   }
 
   addInstanceId() {
