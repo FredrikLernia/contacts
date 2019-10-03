@@ -1,4 +1,4 @@
-const arr = [
+/* const arr = [
   {
     id: 1,
     name: 'Hasse',
@@ -13,7 +13,7 @@ const arr = [
   }
 ]
 
-localStorage.setItem('contacts', JSON.stringify(arr))
+localStorage.setItem('contacts', JSON.stringify(arr)) */
 
 class App {
 
@@ -37,6 +37,7 @@ class App {
 
   createDOM() {
     this.createEl('main', 'body')
+    this.form = new Form()
     this.contacts = new Contacts()
     // const main = document.createElement('main')
     // main.append(this.table)
@@ -100,5 +101,3 @@ class App {
   }
 
 }
-
-// new App().createDOM()
