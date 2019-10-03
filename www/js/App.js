@@ -22,11 +22,11 @@ class App {
 
   listen() {
     window.addEventListener('click', e => {
-      if (e.target.className.includes('add-input-field')) this.addInputSection(e.target.id, this.form.instanceId)
+      if (e.target.className.includes('add-input-field')) this.addInputSection(e.target.id)
 
       if (e.target.className.includes('save-contact')) this.saveContact(e)
 
-      if (e.target.className.includes('delete-contact')) this.deleteContact(e.target.id, this.contacts.instanceId)
+      if (e.target.className.includes('delete-contact')) this.deleteContact(e.target.id)
     })
   }
 
@@ -57,7 +57,7 @@ class App {
     return { name, email, telephone }
   }
 
-  async addInputSection(id, instanceId) {
+  async addInputSection(id) {
     const inputValues = await this.readForm()
     const [name, email, telephone] = this.inputSections
 
@@ -85,7 +85,7 @@ class App {
     }
   }
 
-  async saveContact(e) {
+  async saveContact() {
     const time = new Date().getTime()
 
     const data = await this.readForm()
@@ -112,7 +112,7 @@ class App {
     this.contacts = new Contacts()
   }
 
-  async deleteContact(id, instanceId) {
+  async deleteContact(id) {
     const contacts = await this.loadContacts()
     contacts.splice(contacts.findIndex(contact => contact.id === +id), 1)
     localStorage.setItem('contacts', JSON.stringify(contacts))
