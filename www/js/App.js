@@ -19,37 +19,21 @@ class App {
 
   constructor() {
     this.addInstanceId()
-    this.listen()
-    // this.createDOM()
-    // this.createEventListener()
   }
 
-  /* createEventListener() {
+  listen() {
     window.addEventListener('click', e => {
-      if (e.target.className.includes('delete')) {
-        const contacts = JSON.parse(localStorage.contacts)
-        contacts.splice(contacts.findIndex(contact => contact.id === +e.target.id), 1)
-        localStorage.setItem('contacts', contacts)
-        e.target.parentNode.parentNode.style.display = 'none'
+      if (e.target.className.includes('delete-contact')) {
+        this.deleteContact(e.target.id, this.contacts.instanceId)
       }
     })
-  } */
+  }
 
   createDOM() {
+    this.listen()
     this.createEl('main', 'body')
     this.form = new Form()
     this.contacts = new Contacts()
-    // const main = document.createElement('main')
-    // main.append(this.table)
-
-    // document.querySelector('body').append(main)
-
-    // this.form = new Form().outerEl
-    // main.append(this.form)
-    // this.table = new Table()
-
-    //this.getContacts()
-    //new Contacts()
   }
 
   addInstanceId() {
@@ -69,14 +53,6 @@ class App {
     return el
   }
 
-  listen() {
-    window.addEventListener('click', e => {
-      if (e.target.className.includes('delete-contact')) {
-        this.deleteContact(e.target.id)
-      }
-    })
-  }
-
   loadContacts() {
     if (localStorage.contacts === '[]') return 'Det finns inga kontakter tillagda ännu...'
 
@@ -88,14 +64,13 @@ class App {
     }
   }
 
-  deleteContact(id) {
-    const divToRemove = document.querySelector(`[data-instance-id="${this.instanceId}"]`)
+  deleteContact(id, instanceId) {
+    const divToRemove = document.querySelector(`[data-instance-id="${instanceId}"]`)
     if (divToRemove) {
       const contacts = this.loadContacts()
       contacts.splice(contacts.findIndex(contact => contact.id === +id), 1)
       localStorage.setItem('contacts', JSON.stringify(contacts))
       divToRemove.outerHTML = ''
-      // this.contacts = ''
       this.contacts = new Contacts()
     }
   }
