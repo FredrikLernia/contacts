@@ -6,7 +6,7 @@ class Contacts extends App {
     this.createSection()
   }
 
-  createSection() {
+  async createSection() {
     const contactsSection = this.createEl('div', 'div.contacts', { 'class': 'contacts-section' })
 
     const contactsHeader = this.createEl('div', contactsSection, { 'class': 'contacts-header' })
@@ -20,9 +20,14 @@ class Contacts extends App {
     this.tableHeadings.forEach(tableHeading => this.createEl('th', tr).innerText = tableHeading)
 
     const tbody = this.createEl('tbody', table)
-    const contacts = this.loadContacts()
+    const contacts = await this.loadContacts()
+
     if (contacts) {
-      contacts.forEach(({ id, name, email, telephone }) => {
+      contacts.forEach(contact => {
+        const { id, chosenVersion, versions } = contact
+        const version = versions[chosenVersion]
+        const { name, email, telephone } = version
+        
         const tr = this.createEl('tr', tbody)
         this.createEl('td', tr).innerText = name
         this.createEl('td', tr).innerText = email.join('\n')
