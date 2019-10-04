@@ -2,7 +2,7 @@
   border: 2px solid #333;
   border-radius: 5px;
   overflow: hidden;
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 
 .contacts-header {
@@ -39,7 +39,8 @@ th, td {
 }
 
 tbody > tr:nth-child(even) {
-  background-color: #eee;
+  /* background-color: #eee; */
+  background-color: rgba(0, 0, 0, 0.1)
 }
 
 .edit-column {

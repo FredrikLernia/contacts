@@ -2,7 +2,7 @@
   border: 2px solid rgb(209, 136, 0);
   border-radius: 5px;
   overflow: hidden;
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 
 .contact-header {
@@ -20,4 +20,10 @@
   display: inline-block;
   margin: 0;
   vertical-align: middle;
+}
+
+.selected-version {
+  background-color: rgb(248, 217, 160);
+  /* font-weight: bold; */
+  font-style: italic;
 }
