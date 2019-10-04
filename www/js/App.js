@@ -25,7 +25,7 @@ class App {
 
       if (e.target.className.includes('save-contact')) this.saveContact(e)
 
-      if (e.target.className.includes('update-contact')) this.updateContact(e.target.id)
+      if (e.target.className.includes('edit-contact')) this.editContact(e.target.id)
 
       if (e.target.className.includes('delete-contact')) this.deleteContact(e.target.id)
     })
@@ -90,6 +90,8 @@ class App {
     const time = new Date().getTime()
 
     const data = await this.readForm()
+    data.email = data.email.filter(email => email)
+    data.telephone = data.telephone.filter(telephone => telephone)
     data.added = time
 
     const newContact = {
@@ -119,7 +121,7 @@ class App {
     this.contacts = new Contacts()
   }
 
-  updateContact(id) {
+  editContact(id) {
     this.contact = new Contact(id)
 
     document.querySelector('div.form-section').outerHTML = ''
