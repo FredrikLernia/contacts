@@ -90,6 +90,11 @@ class App {
     const time = new Date().getTime()
 
     const data = await this.readForm()
+    if (!data.name) {
+      alert('Du måste ange ett namn!')
+      return false
+    }
+
     data.email = data.email.filter(email => email)
     data.telephone = data.telephone.filter(telephone => telephone)
     data.added = time
