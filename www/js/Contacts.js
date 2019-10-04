@@ -27,7 +27,8 @@ class Contacts extends App {
         this.createEl('td', tr).innerText = name
         this.createEl('td', tr).innerText = email.join('\n')
         this.createEl('td', tr).innerText = telephone.join('\n')
-        const editTd = this.createEl('td', tr)
+        const editTd = this.createEl('td', tr, { 'class': 'edit-column' })
+        this.createEl('i', editTd, { 'class': 'far fa-edit update-contact', 'id': id })
         this.createEl('i', editTd, { 'class': 'fas fa-user-times delete-contact', 'id': id })
       })
     }

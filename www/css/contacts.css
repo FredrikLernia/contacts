@@ -42,10 +42,22 @@ tbody > tr:nth-child(even) {
   background-color: #eee;
 }
 
+.edit-column {
+  width: 90px;
+}
+
 td > i {
+  padding: 5px;
   font-size: 18px;
-  color: red;
   cursor: pointer;
+}
+
+td > .update-contact {
+  color: rgb(209, 136, 0)
+}
+
+td > .delete-contact {
+  color: rgb(202, 0, 0);
 }
 
 .empty-contacts {
