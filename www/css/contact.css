@@ -1,0 +1,23 @@
+.contact-section {
+  border: 2px solid rgb(209, 136, 0);
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.contact-header {
+  background-color: rgb(209, 136, 0);
+  color: #f5f5f5;
+}
+
+.contact-header > i {
+  font-size: 24px;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.contact-header > h3 {
+  display: inline-block;
+  margin: 0;
+  vertical-align: middle;
+}
