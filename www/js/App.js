@@ -1,14 +1,13 @@
 class App {
 
-  constructor() {
-    
-  }
+  constructor() {}
 
   createDOM() {
     this.listen()
     const main = this.createEl('main', 'body')
     this.createEl('div', main, { 'class': 'form' })
     this.createEl('div', main, { 'class': 'contacts' })
+    this.createEl('div', main, { 'class': 'contact' })
 
     this.inputSections = [
       { label: 'Namn', id: 'name', inputs: [{ type: 'text', className: 'name-input', id: 'name', value: '' }] },
@@ -25,6 +24,8 @@ class App {
       if (e.target.className.includes('add-input-field')) this.addInputSection(e.target.id)
 
       if (e.target.className.includes('save-contact')) this.saveContact(e)
+
+      if (e.target.className.includes('update-contact')) this.updateContact(e.target.id)
 
       if (e.target.className.includes('delete-contact')) this.deleteContact(e.target.id)
     })
@@ -89,15 +90,21 @@ class App {
     const time = new Date().getTime()
 
     const data = await this.readForm()
-    data.id = time
+    data.added = time
+
+    const newContact = {
+      id: time,
+      chosenVersion: 0,
+      versions: [data]
+    }
 
     try {
       let contacts = JSON.parse(localStorage.contacts)
-      contacts.push(data)
+      contacts.push(newContact)
       localStorage.setItem('contacts', JSON.stringify(contacts))
     }
     catch(e) {
-      localStorage.setItem('contacts', JSON.stringify([data]))
+      localStorage.setItem('contacts', JSON.stringify([newContact]))
     }
 
     this.inputSections = [
@@ -110,6 +117,13 @@ class App {
     this.form = new Form(this.inputSections)
     document.querySelector('div.contacts-section').outerHTML = ''
     this.contacts = new Contacts()
+  }
+
+  updateContact(id) {
+    this.contact = new Contact(id)
+
+    document.querySelector('div.form-section').outerHTML = ''
+    document.querySelector('div.contacts-section').outerHTML = ''
   }
 
   async deleteContact(id) {
