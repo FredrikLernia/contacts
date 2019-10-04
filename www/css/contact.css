@@ -2,7 +2,6 @@
   border: 2px solid rgb(209, 136, 0);
   border-radius: 5px;
   overflow: hidden;
-  /* background-color: #fff; */
 }
 
 .contact-header {
@@ -24,6 +23,25 @@
 
 .selected-version {
   background-color: rgb(248, 217, 160);
-  /* font-weight: bold; */
   font-style: italic;
+}
+
+.update-contact {
+  float: right;
+  padding: 7px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-right: 10px;
+  background-color: rgb(209, 136, 0);
+  border: 2px solid #f5f5f5;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #f5f5f5;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.update-contact:hover {
+  background-color: #f5f5f5;
+  color: rgb(209, 136, 0);
 }

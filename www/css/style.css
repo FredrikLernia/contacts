@@ -7,10 +7,17 @@
   padding: 0;
 }
 
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 body {
   background-image: url('../img/telephones.jpg');
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 

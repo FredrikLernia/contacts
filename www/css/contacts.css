@@ -2,7 +2,6 @@
   border: 2px solid #333;
   border-radius: 5px;
   overflow: hidden;
-  /* background-color: #fff; */
 }
 
 .contacts-header {
@@ -53,7 +52,7 @@ td > i {
   cursor: pointer;
 }
 
-td > .update-contact {
+td > .edit-contact {
   color: rgb(209, 136, 0)
 }
 
