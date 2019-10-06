@@ -16,6 +16,11 @@
   vertical-align: middle;
 }
 
+.form-header > .exit-form {
+  float: right;
+  cursor: pointer;
+}
+
 .form-header > h3 {
   display: inline-block;
   margin: 0;
