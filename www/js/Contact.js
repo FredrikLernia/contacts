@@ -37,7 +37,8 @@ class Contact extends App {
       this.createEl('td', tr).innerText = email.join('\n')
       this.createEl('td', tr).innerText = telephone.join('\n')
       this.createEl('td', tr).innerText = new Date(added).toLocaleDateString('sv-SE', {year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric'})
-      this.createEl('td', tr)
+      const checkTd = this.createEl('td', tr)
+      if (contact.chosenVersion === i) this.createEl('i', checkTd, { 'class': 'fas fa-check' })
     })
   }
 
