@@ -1,8 +1,9 @@
 class Form extends App {
 
-  constructor(inputSections) {
+  constructor(inputSections, id = '') {
     super()
     this.inputSections = inputSections
+    this.id = id
     this.createSection()
   }
 
@@ -22,7 +23,7 @@ class Form extends App {
     })
 
     const inputSection = this.createEl('div', formSection, { 'class': 'input-section' })
-    this.createEl('button', inputSection, { 'class': 'save-contact' }).innerHTML = '<i class="far fa-save"></i> Spara'
+    this.createEl('button', inputSection, { 'class': 'save-contact', id: this.id }).innerHTML = '<i class="far fa-save"></i> Spara'
   }
 
 }

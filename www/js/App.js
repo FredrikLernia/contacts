@@ -1,6 +1,6 @@
 class App {
 
-  constructor() {}
+  constructor() { }
 
   createDOM() {
     this.listen()
@@ -15,6 +15,8 @@ class App {
       { label: 'Telefon', id: 'telephone', inputs: [{ type: 'text', className: 'telephone-input', id: 'telephone', value: '' }] }
     ]
 
+    this.updateId = ''
+
     this.form = new Form(this.inputSections)
     this.contacts = new Contacts()
   }
@@ -22,12 +24,10 @@ class App {
   listen() {
     window.addEventListener('click', e => {
       if (e.target.className.includes('add-input-field')) this.addInputSection(e.target.id)
-
-      if (e.target.className.includes('save-contact')) this.saveContact(e)
-
+      if (e.target.className.includes('save-contact')) this.saveContact(e.target.id)
       if (e.target.className.includes('edit-contact')) this.editContact(e.target.id)
-
       if (e.target.className.includes('delete-contact')) this.deleteContact(e.target.id)
+      if (e.target.className.includes('update-contact')) this.updateContact(e.target.id)
     })
   }
 
@@ -72,7 +72,7 @@ class App {
     inputSection.inputs.push(newInput)
 
     document.querySelector('div.form-section').outerHTML = ''
-    this.form = new Form(this.inputSections)
+    this.updateId ? this.form = new Form(this.inputSections, this.updateId) : this.form = new Form(this.inputSections)
   }
 
   loadContacts() {
@@ -86,7 +86,7 @@ class App {
     }
   }
 
-  async saveContact() {
+  async saveContact(id) {
     const time = new Date().getTime()
 
     const data = await this.readForm()
@@ -99,31 +99,52 @@ class App {
     data.telephone = data.telephone.filter(telephone => telephone)
     data.added = time
 
-    const newContact = {
-      id: time,
-      chosenVersion: 0,
-      versions: [data]
-    }
+    const contacts = this.loadContacts()
 
     try {
-      let contacts = JSON.parse(localStorage.contacts)
-      contacts.push(newContact)
+      let contact
+      if (id) {
+        contact = contacts.find(contact => contact.id === +id)
+        contact.versions.push(data)
+        contact.chosenVersion = contact.versions.length - 1
+      }
+      else {
+        contact = {
+          id: time,
+          chosenVersion: 0,
+          versions: [data]
+        }
+        contacts.push(contact)
+      }
       localStorage.setItem('contacts', JSON.stringify(contacts))
     }
-    catch(e) {
-      localStorage.setItem('contacts', JSON.stringify([newContact]))
+    catch (e) {
+      const contact = {
+        id: time,
+        chosenVersion: 0,
+        versions: [data]
+      }
+      localStorage.setItem('contacts', JSON.stringify([contact]))
     }
 
-    this.inputSections = [
-      { label: 'Namn', id: 'name', inputs: [{ type: 'text', className: 'name-input', id: 'name', value: '' }] },
-      { label: 'Epost', id: 'email', inputs: [{ type: 'text', className: 'email-input', id: 'email', value: '' }] },
-      { label: 'Telefon', id: 'telephone', inputs: [{ type: 'text', className: 'telephone-input', id: 'telephone', value: '' }] }
-    ]
+    if (id) {
+      document.querySelector('div.form-section').outerHTML = ''
+      this.form = ''
+      document.querySelector('div.contact-section').outerHTML = ''
+      this.contact = new Contact(id)
+    }
+    else {
+      this.inputSections = [
+        { label: 'Namn', id: 'name', inputs: [{ type: 'text', className: 'name-input', id: 'name', value: '' }] },
+        { label: 'Epost', id: 'email', inputs: [{ type: 'text', className: 'email-input', id: 'email', value: '' }] },
+        { label: 'Telefon', id: 'telephone', inputs: [{ type: 'text', className: 'telephone-input', id: 'telephone', value: '' }] }
+      ]
 
-    document.querySelector('div.form-section').outerHTML = ''
-    this.form = new Form(this.inputSections)
-    document.querySelector('div.contacts-section').outerHTML = ''
-    this.contacts = new Contacts()
+      document.querySelector('div.form-section').outerHTML = ''
+      this.form = new Form(this.inputSections)
+      document.querySelector('div.contacts-section').outerHTML = ''
+      this.contacts = new Contacts()
+    }
   }
 
   editContact(id) {
@@ -140,6 +161,22 @@ class App {
 
     document.querySelector('div.contacts-section').outerHTML = ''
     this.contacts = new Contacts()
+  }
+
+  async updateContact(id) {
+    this.updateId = id
+
+    const contacts = this.loadContacts()
+    const contact = contacts.find(contact => contact.id === +id)
+    const { name, email, telephone } = contact.versions[contact.chosenVersion]
+
+    this.inputSections = [
+      { label: 'Namn', id: 'name', inputs: [{ type: 'text', className: 'name-input', id: 'name', value: name }] },
+      { label: 'Epost', id: 'email', inputs: email.length ? email.map((x, i) => ({ type: 'text', className: 'email-input', id: i ? `email${i}` : 'email', value: x })) : [{ type: 'text', className: 'email-input', id: 'email', value: '' }] },
+      { label: 'Telefon', id: 'telephone', inputs: telephone.length ? telephone.map((x, i) => ({ type: 'text', className: 'telephone-input', id: i ? `telephone${i}` : 'telephone', value: x })) : [{ type: 'text', className: 'telephone-input', id: 'telephone', value: '' }] }
+    ]
+
+    this.form = new Form(this.inputSections, id)
   }
 
 }

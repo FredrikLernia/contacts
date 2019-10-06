@@ -21,7 +21,7 @@ class Contact extends App {
     const contactHeader = this.createEl('div', contactSection, { 'class': 'contact-header clearfix' })
     this.createEl('i', contactHeader, { 'class': 'far fa-address-card' })
     this.createEl('h3', contactHeader).innerText = contact.versions[contact.chosenVersion].name
-    this.createEl('button', contactHeader, { 'class': 'update-contact' }).innerText = 'Uppdatera'
+    this.createEl('button', contactHeader, { 'class': 'update-contact', id: this.id }).innerText = 'Uppdatera'
 
     const table = this.createEl('table', contactSection)
 
