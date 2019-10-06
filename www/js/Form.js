@@ -11,8 +11,8 @@ class Form extends App {
     const formSection = this.createEl('div', 'div.form', { 'class': 'form-section' })
 
     const formHeader = this.createEl('div', formSection, { 'class': 'form-header' })
-    this.createEl('i', formHeader, { 'class': 'fas fa-user-plus' })
-    this.createEl('h3', formHeader).innerText = 'Lägg till kontakt'
+    this.createEl('i', formHeader, { 'class': this.id ? 'far fa-edit' : 'fas fa-user-plus' })
+    this.createEl('h3', formHeader).innerText = this.id ? 'Uppdatera kontakt' : 'Lägg till kontakt'
 
     this.inputSections.forEach(({ label, id, inputs }) => {
       const inputSection = this.createEl('div', formSection, { 'class': 'input-section', id: `input-section-${id}` })
