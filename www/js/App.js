@@ -28,7 +28,7 @@ class App {
       if (e.target.className.includes('edit-contact')) this.editContact(e.target.id)
       if (e.target.className.includes('delete-contact')) this.deleteContact(e.target.id)
       if (e.target.className.includes('update-contact')) this.updateContact(e.target.id)
-      if (e.target.className.includes('change-version')) this.changeVersion(e.target.id)
+      if (e.target.closest('.change-version')) this.changeVersion(e.target.parentElement.id)
       if (e.target.className.includes('exit-form')) this.exitForm()
     })
   }
@@ -153,7 +153,9 @@ class App {
     this.contact = new Contact(id)
 
     document.querySelector('div.form-section').outerHTML = ''
+    this.form = ''
     document.querySelector('div.contacts-section').outerHTML = ''
+    this.contacts = ''
   }
 
   async deleteContact(id) {
@@ -181,11 +183,22 @@ class App {
     this.form = new Form(this.inputSections, id)
   }
 
-  changeVersion(id) {
-    const contacts = this.loadContacts()
-    // id = id.split('-')[0]
-    console.log(id)
+  async changeVersion(targetId) {
+    const contacts = await this.loadContacts()
+    const id = targetId.split('-')[0]
+    const version = +targetId.split('-')[1]
     const contact = contacts.find(contact => contact.id === +id)
+
+    if (confirm(`Vill du ändra version av ${contact.versions[contact.chosenVersion].name}?`)) {
+      contact.chosenVersion = version
+      localStorage.setItem('contacts', JSON.stringify(contacts))
+      document.querySelector('div.contact-section').outerHTML = ''
+      this.contact = new Contact(id)
+      if (document.querySelector('div.form-section')) {
+        document.querySelector('div.form-section').outerHTML = ''
+        this.form = ''
+      }
+    }
   }
 
   exitForm() {

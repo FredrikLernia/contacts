@@ -34,6 +34,8 @@
 .input-section > label {
   display: block;
   padding-bottom: 7px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .input-section > input {
