@@ -3,7 +3,7 @@ class Contact extends App {
   constructor(id) {
     super()
     this.id = id
-    this.tableHeadings = ['Namn', 'E-post', 'Telefon', 'Skapad', '']
+    this.tableHeadings = ['Ändrad', 'Namn', 'E-post', 'Telefon', '']
     this.createSection()
   }
 
@@ -34,10 +34,10 @@ class Contact extends App {
     contact.versions.forEach((versions, i) => {
       const { name, email, telephone, added } = versions
       const tr = this.createEl('tr', tbody, { 'class': contact.chosenVersion === i ? 'selected-version' : 'change-version', 'id': `${this.id}-${i}` })
+      this.createEl('td', tr).innerText = new Date(added).toLocaleDateString('sv-SE', { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' })
       this.createEl('td', tr).innerText = name
       this.createEl('td', tr).innerText = email.join('\n')
       this.createEl('td', tr).innerText = telephone.join('\n')
-      this.createEl('td', tr).innerText = new Date(added).toLocaleDateString('sv-SE', { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' })
       const checkTd = this.createEl('td', tr)
       if (contact.chosenVersion === i) this.createEl('i', checkTd, { 'class': 'fas fa-check' })
     })
