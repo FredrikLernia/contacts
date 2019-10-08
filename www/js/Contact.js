@@ -36,6 +36,10 @@ class Contact extends App {
       const checkTd = this.createEl('td', tr)
       if (contact.chosenVersion === i) this.createEl('i', checkTd, { 'class': 'fas fa-check' })
     })
+
+    const backDiv = this.createEl('div', contactSection, { 'class': 'go-back' })
+    this.createEl('i', backDiv, { 'class': 'far fa-arrow-alt-circle-left' })
+    this.createEl('span', backDiv).innerText = ' Tillbaka'
   }
 
 }

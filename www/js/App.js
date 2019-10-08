@@ -33,6 +33,7 @@ class App {
       if (e.target.className.includes('update-contact')) this.updateContact(e.target.id)
       if (e.target.closest('.change-version')) this.changeVersion(e.target.parentElement.id)
       if (e.target.className.includes('exit-form')) this.exitForm()
+      if (e.target.closest('.go-back')) this.goBack()
     })
 
     window.addEventListener('popstate', () => {
@@ -198,6 +199,12 @@ class App {
   exitForm() {
     this.form = ''
     document.querySelector('div.form-section').outerHTML = ''
+  }
+
+  goBack() {
+    console.log('Back')
+    history.pushState(null, null, '/')
+    this.router.appendComponents('/')
   }
 
 }
