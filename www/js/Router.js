@@ -32,12 +32,16 @@ class Router extends App {
         this.contact = new Contact(id)
       }
     })
-
-    console.log(this.routes)
   }
 
   appendComponents(path) {
-    this.routes[path]()
+    if (this.routes[path]) {
+      this.routes[path]()
+    }
+    else {
+      this.clearDOM()
+      new MissingPage()
+    }
   }
 
 }

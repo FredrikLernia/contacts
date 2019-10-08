@@ -202,7 +202,6 @@ class App {
   }
 
   goBack() {
-    console.log('Back')
     history.pushState(null, null, '/')
     this.router.appendComponents('/')
   }
