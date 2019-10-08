@@ -20,14 +20,13 @@ class Contacts extends App {
     this.tableHeadings.forEach(tableHeading => this.createEl('th', tr).innerText = tableHeading)
 
     const tbody = this.createEl('tbody', table)
-    const contacts = await this.loadContacts()
 
-    if (contacts) {
+    if (contacts.length) {
       contacts.forEach(contact => {
         const { id, chosenVersion, versions } = contact
         const version = versions[chosenVersion]
         const { name, email, telephone } = version
-        
+
         const tr = this.createEl('tr', tbody)
         this.createEl('td', tr).innerText = name
         this.createEl('td', tr).innerText = email.join('\n')

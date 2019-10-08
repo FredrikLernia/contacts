@@ -7,14 +7,9 @@ class Contact extends App {
     this.createSection()
   }
 
-  getContact() {
-    const contacts = this.loadContacts()
-    const contact = contacts.find(contact => contact.id === +this.id)
-    return contact
-  }
-
   createSection() {
-    const contact = this.getContact()
+    const contact = contacts.find(contact => contact.id === +this.id)
+
     const contactSection = this.createEl('div', 'div.contact', { 'class': 'contact-section' })
 
     const contactHeader = this.createEl('div', contactSection, { 'class': 'contact-header clearfix' })
