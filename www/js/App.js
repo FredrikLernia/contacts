@@ -4,6 +4,7 @@ class App {
 
   createDOM() {
     this.listen()
+
     const main = this.createEl('main', 'body')
     this.createEl('div', main, { 'class': 'form' })
     this.createEl('div', main, { 'class': 'contacts' })
@@ -17,8 +18,10 @@ class App {
 
     this.updateId = ''
 
-    this.form = new Form(this.inputSections)
-    this.contacts = new Contacts()
+    this.router = new Router(location.pathname, this.inputSections)
+    
+    /* this.form = new Form(this.inputSections)
+    this.contacts = new Contacts() */
   }
 
   listen() {
@@ -30,6 +33,10 @@ class App {
       if (e.target.className.includes('update-contact')) this.updateContact(e.target.id)
       if (e.target.closest('.change-version')) this.changeVersion(e.target.parentElement.id)
       if (e.target.className.includes('exit-form')) this.exitForm()
+    })
+
+    window.addEventListener('popstate', () => {
+      this.router.appendComponents(location.pathname)
     })
   }
 
@@ -106,6 +113,10 @@ class App {
     }
     contacts.save()
 
+    if (!id) {
+      this.router.addRoutes()
+    }
+
     if (id) {
       document.querySelector('div.form-section').outerHTML = ''
       this.form = ''
@@ -127,18 +138,24 @@ class App {
   }
 
   editContact(id) {
-    this.contact = new Contact(id)
+    /* this.contact = new Contact(id)
 
     document.querySelector('div.form-section').outerHTML = ''
     this.form = ''
     document.querySelector('div.contacts-section').outerHTML = ''
-    this.contacts = ''
+    this.contacts = '' */
+    history.pushState(null, null, `/${id}`)
+    this.router.appendComponents(`/${id}`)
   }
 
   async deleteContact(id) {
-    if (confirm('Är du säker på att du vill ta bort den här kontakten?'))
+    const contact = contacts.find(contact => contact.id === +id)
+
+    if (confirm(`Är du säker på att du vill ta bort ${contact.versions[contact.chosenVersion].name}?`))
     contacts.splice(contacts.findIndex(contact => contact.id === +id), 1)
     contacts.save()
+
+    this.router.addRoutes()
 
     document.querySelector('div.contacts-section').outerHTML = ''
     this.contacts = new Contacts()
