@@ -1,13 +1,19 @@
 class Form extends App {
 
-  constructor(inputSections, id = '') {
+  /* constructor(inputSections, id = '') {
     super()
-    this.inputSections = inputSections
+    // this.inputSections = inputSections
+    this.id = id
+    this.createSection()
+  } */
+
+  constructor(id = '') {
+    super()
     this.id = id
     this.createSection()
   }
 
-  createSection() {
+  /* createSection() {
     const formSection = this.createEl('div', 'div.form', { 'class': 'form-section' })
 
     const formHeader = this.createEl('div', formSection, { 'class': 'form-header clearfix' })
@@ -25,6 +31,32 @@ class Form extends App {
 
     const inputSection = this.createEl('div', formSection, { 'class': 'input-section' })
     this.createEl('button', inputSection, { 'class': 'save-contact', id: this.id }).innerHTML = '<i class="far fa-save"></i> Spara'
+  } */
+  
+  createSection() {
+    const formSection = this.createEl('div', 'div.form', { 'class': 'form-section' })
+
+    const formHeader = this.createEl('div', formSection, { 'class': 'form-header clearfix' })
+    this.createEl('i', formHeader, { 'class': this.id ? 'far fa-edit' : 'fas fa-user-plus' })
+    this.createEl('h3', formHeader).innerText = this.id ? 'Uppdatera kontakt' : 'Lägg till kontakt'
+    if (this.id) this.createEl('i', formHeader, { 'class': 'exit-form fas fa-times' })
+
+    const nameInputSection = this.createEl('div', formSection, { 'class': 'input-section', id: 'input-section-name' })
+    this.createEl('label', nameInputSection, { 'for': 'name' }).innerText = 'Namn'
+    this.createEl('input', nameInputSection, { type: 'text', 'class': 'name-input', id: 'name-input', value: '' })
+    
+    const emailInputSection = this.createEl('div', formSection, { 'class': 'input-section', id: 'input-section-email' })
+    this.createEl('label', emailInputSection, { for: 'email-input' }).innerText = 'E-post'
+    this.createEl('input', emailInputSection, { type: 'text', 'class': 'email-input', id: 'email-input', value: '' })
+    this.createEl('i', formSection, { 'class': 'fas fa-plus-circle add-input-field', id: 'email' })
+    
+    const telephoneInputSection = this.createEl('div', formSection, { 'class': 'input-section', id: 'input-section-telephone' })
+    this.createEl('label', telephoneInputSection, { 'for': 'telephone-input' }).innerText = 'Telefon'
+    this.createEl('input', telephoneInputSection, { type: 'text', 'class': 'telephone-input', id: 'telephone-input', value: '' })
+    this.createEl('i', formSection, { 'class': 'fas fa-plus-circle add-input-field', id: 'telephone' })
+
+    const saveInputSection = this.createEl('div', formSection, { 'class': 'input-section' })
+    this.createEl('button', saveInputSection, { 'class': 'save-contact', id: this.id }).innerHTML = '<i class="far fa-save"></i> Spara'
   }
 
 }

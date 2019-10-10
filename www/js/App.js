@@ -10,11 +10,11 @@ class App {
     this.createEl('div', main, { 'class': 'contacts' })
     this.createEl('div', main, { 'class': 'contact' })
 
-    this.inputSections = [
+    /* this.inputSections = [
       { label: 'Namn', id: 'name', inputs: [{ type: 'text', className: 'name-input', id: 'name', value: '' }] },
       { label: 'Epost', id: 'email', inputs: [{ type: 'text', className: 'email-input', id: 'email', value: '' }] },
       { label: 'Telefon', id: 'telephone', inputs: [{ type: 'text', className: 'telephone-input', id: 'telephone', value: '' }] }
-    ]
+    ] */
 
     this.updateId = ''
 
@@ -53,7 +53,7 @@ class App {
   }
 
   readForm() {
-    const name = document.querySelector('input#name').value
+    const name = document.querySelector('input#name-input').value
 
     const emailSectionEls = document.querySelector('div#input-section-email').children
     const email = []
@@ -68,7 +68,7 @@ class App {
     return { name, email, telephone }
   }
 
-  async addInputSection(id) {
+  /* async addInputSection(id) {
     const inputValues = await this.readForm()
     const [name, email, telephone] = this.inputSections
 
@@ -83,9 +83,14 @@ class App {
 
     document.querySelector('div.form-section').outerHTML = ''
     this.updateId ? this.form = new Form(this.inputSections, this.updateId) : this.form = new Form(this.inputSections)
+  } */
+  
+  addInputSection(id) {
+    const inputSection = document.querySelector(`div#input-section-${id}`)
+    this.createEl('input', inputSection, { type: 'text', 'class': `${id}-input`, value: '' })
   }
 
-  saveContact(id = '') {
+  /* saveContact(id = '') {
     const data = this.readForm()
 
     if (!data.name) {
@@ -136,6 +141,11 @@ class App {
       document.querySelector('div.contacts-section').outerHTML = ''
       this.contacts = new Contacts()
     }
+  } */
+
+  saveContact() {
+    const data = this.readForm()
+    console.log(data)
   }
 
   editContact(id) {

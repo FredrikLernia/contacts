@@ -28,7 +28,9 @@
 }
 
 .input-section {
-  padding: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .input-section > label {
@@ -47,13 +49,15 @@
   font-size: 16px;
 }
 
-.input-section > i {
+.form-section > i {
+  margin-left: 10px;
   color: rgb(38, 117, 1);
   font-size: 20px;
   cursor: pointer;
 }
 
 .input-section > button {
+  margin-bottom: 10px;
   width: 100%;
   padding: 10px;
   background-color: rgb(38, 117, 1);
