@@ -229,7 +229,7 @@ class App {
     this.router.frontendRouter(`/${id}`)
   }
 
-  async deleteContact(id) {
+  deleteContact(id) {
     const contact = contacts.find(contact => contact.id === +id)
 
     if (confirm(`Är du säker på att du vill ta bort ${contact.versions[contact.chosenVersion].name}?`))

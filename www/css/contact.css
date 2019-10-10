@@ -84,11 +84,18 @@
   cursor: pointer;
 }
 
-.contact-section .go-back {
-  display: inline-block;
+.contact-section hr {
   margin-left: 10px;
   margin-right: 10px;
-  margin-bottom: 10px;
+  border: 0.5px solid #ddd;
+}
+
+.contact-section .go-back {
+  display: inline-block;
+  padding: 10px;
+  /* margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px; */
   color: rgb(209, 136, 0);
   cursor: pointer;
 }
@@ -106,3 +113,9 @@
   vertical-align: middle;
   font-weight: bold;
 }
+
+/* @media only screen and (max-width: 425px) {
+  .contact-section th, .contact-section td {
+    padding: 5px;
+  }
+} */

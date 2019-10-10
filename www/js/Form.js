@@ -82,7 +82,7 @@ class Form extends App {
     this.createEl('i', formSection, { 'class': 'fas fa-plus-circle add-input-field', id: 'telephone' })
 
     const saveInputSection = this.createEl('div', formSection, { 'class': 'input-section' })
-    this.createEl('button', saveInputSection, { 'class': 'save-contact', id: this.id }).innerHTML = '<i class="far fa-save"></i> Spara'
+    this.createEl('button', saveInputSection, { 'class': 'save-contact', id: this.id }).innerHTML = '<i class="fas fa-save"></i>Spara'
   }
 
 }

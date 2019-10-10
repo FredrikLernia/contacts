@@ -28,6 +28,7 @@
 }
 
 .input-section {
+  /* padding: 10px; */
   padding-top: 10px;
   padding-right: 10px;
   padding-left: 10px;
@@ -50,9 +51,10 @@
 }
 
 .form-section > i {
-  margin-left: 10px;
+  /* margin-left: 10px; */
+  padding: 10px;
   color: rgb(38, 117, 1);
-  font-size: 20px;
+  font-size: 24px;
   cursor: pointer;
 }
 
@@ -74,4 +76,10 @@
 
 .input-section > button:hover {
   background-color: rgb(28, 88, 0);
+}
+
+@media only screen and (max-width: 425px) {
+  .input-section > label {
+    font-size: 16px;
+  }
 }

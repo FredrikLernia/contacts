@@ -1,3 +1,46 @@
+/* Small devices */
+.contacts-small {
+  display: none;
+}
+
+.contacts-small .contact-info {
+  padding: 20px;
+}
+
+.contacts-small .contact-info > h3 > i {
+  padding: 10px;
+  float: right;
+  font-size: 22px;
+}
+
+.contacts-small .contact-info > h3 > .edit-contact {
+  color: rgb(209, 136, 0);
+}
+
+.contacts-small .contact-info > h3 > .delete-contact {
+  color: rgb(202, 0, 0);
+}
+
+.contacts-small .contact-info:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.1)
+}
+
+.contacts-small h3 > u {
+  text-decoration: none;
+  border-bottom: 3px solid #000;
+}
+
+.contacts-small .info-div {
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.contacts-small .info-heading {
+  margin-bottom: 10px;
+}
+/* Small devices End */
+
 .contacts-section {
   /* margin-bottom: 20px; */
   border: 2px solid #333;
@@ -43,12 +86,12 @@
 }
 
 .contacts-section .edit-column {
-  width: 90px;
+  width: 120px;
 }
 
 .contacts-section td > i {
-  padding: 5px;
-  font-size: 18px;
+  padding: 10px;
+  font-size: 20px;
   cursor: pointer;
 }
 
@@ -63,4 +106,14 @@
 .contacts-section .empty-contacts {
   padding: 10px;
   font-style: italic;
+}
+
+@media only screen and (max-width: 425px) {
+  .contacts-small {
+    display: block;
+  }
+
+  .contacts-section table {
+    display: none;
+  }
 }
