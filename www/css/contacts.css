@@ -9,6 +9,7 @@
 
 .contacts-small .contact-info > h3 > i {
   padding: 10px;
+  padding-top: 4px;
   float: right;
   font-size: 22px;
 }

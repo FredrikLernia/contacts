@@ -20,7 +20,7 @@ class Contacts extends App {
       const { id } = contact
       contact = contact.versions[contact.chosenVersion]
 
-      const contactDiv = this.createEl('div', contactsSmall, { 'class': 'contact-info' })
+      const contactDiv = this.createEl('div', contactsSmall, { 'class': 'contact-info clearfix' })
 
       this.createEl('h3', contactDiv).innerHTML = `<u>${contact.name}</u><i class="fas fa-user-times delete-contact" id="${id}"></i><i class="far fa-edit edit-contact" id="${id}"></i>`
 
