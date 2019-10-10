@@ -38,7 +38,6 @@ class Form extends App {
     if (this.id) {
       contact = contacts.find(contact => contact.id === +this.id)
       contact = contact.versions[contact.chosenVersion]
-      console.log(contact)
     }
 
     const formSection = this.createEl('div', 'div.form', { 'class': 'form-section' })

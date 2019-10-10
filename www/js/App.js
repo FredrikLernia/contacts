@@ -236,10 +236,10 @@ class App {
     contacts.splice(contacts.findIndex(contact => contact.id === +id), 1)
     contacts.save()
 
-    this.router.addRoutes()
-
-    document.querySelector('div.contacts-section').outerHTML = ''
-    this.contacts = new Contacts()
+    // this.router.addRoutes()
+    this.router.frontendRouter('/')
+    /* document.querySelector('div.contacts-section').outerHTML = ''
+    this.contacts = new Contacts() */
   }
 
   updateContact(id) {
@@ -281,10 +281,9 @@ class App {
     document.querySelector('div.form-section').outerHTML = ''
   }
 
-  // FUNKAR EJ!!!
   goBack() {
     history.pushState(null, null, '/')
-    this.router.appendComponents('/')
+    this.router.frontendRouter('/')
   }
 
 }
