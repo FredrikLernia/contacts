@@ -55,6 +55,7 @@ class App {
       if (e.target.className.includes('delete-contact')) this.deleteContact(e.target.id)
       if (e.target.className.includes('update-contact')) this.updateContact(e.target.id)
       if (e.target.closest('.change-version')) this.changeVersion(e.target.parentElement.id)
+      if (e.target.className.includes('choose')) this.changeVersion(e.target.id)
       if (e.target.className.includes('exit-form')) this.exitForm()
       if (e.target.closest('.go-back')) this.goBack()
     })

@@ -24,17 +24,21 @@ class Contacts extends App {
 
       this.createEl('h3', contactDiv).innerHTML = `<u>${contact.name}</u><i class="fas fa-user-times delete-contact" id="${id}"></i><i class="far fa-edit edit-contact" id="${id}"></i>`
 
-      const emailDiv = this.createEl('div', contactDiv, { 'class': 'info-div' })
-      this.createEl('p', emailDiv, { 'class': 'info-heading' }).innerHTML = '<i class="fas fa-envelope"></i> <strong>E-post</strong>'
-      contact.email.forEach(email => {
-        this.createEl('p', emailDiv).innerText = email
-      })
+      if (contact.email.length) {
+        const emailDiv = this.createEl('div', contactDiv, { 'class': 'info-div' })
+        this.createEl('p', emailDiv, { 'class': 'info-heading' }).innerHTML = '<i class="fas fa-envelope"></i> <strong>E-post</strong>'
+        contact.email.forEach(email => {
+          this.createEl('p', emailDiv).innerText = email
+        })
+      }
 
-      const telephoneDiv = this.createEl('div', contactDiv, { 'class': 'info-div' })
-      this.createEl('p', telephoneDiv, { 'class': 'info-heading' }).innerHTML = '<i class="fas fa-phone"></i> <strong>Telefon</strong>'
-      contact.telephone.forEach(telephone => {
-        this.createEl('p', telephoneDiv).innerText = telephone
-      })
+      if (contact.telephone.length) {
+        const telephoneDiv = this.createEl('div', contactDiv, { 'class': 'info-div' })
+        this.createEl('p', telephoneDiv, { 'class': 'info-heading' }).innerHTML = '<i class="fas fa-phone"></i> <strong>Telefon</strong>'
+        contact.telephone.forEach(telephone => {
+          this.createEl('p', telephoneDiv).innerText = telephone
+        })
+      }
     })
 
     // Large devices
