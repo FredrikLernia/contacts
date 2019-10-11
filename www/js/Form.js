@@ -48,7 +48,7 @@ class Form extends App {
     if (this.id) this.createEl('i', formHeader, { 'class': 'exit-form fas fa-times' })
 
     const nameInputSection = this.createEl('div', formSection, { 'class': 'input-section', id: 'input-section-name' })
-    this.createEl('label', nameInputSection, { 'for': 'name' }).innerText = 'Namn'
+    this.createEl('label', nameInputSection, { 'for': 'name-input' }).innerText = 'Namn'
     this.createEl('input', nameInputSection, { type: 'text', 'class': 'name-input', id: 'name-input', value: contact ? contact.name : '' })
 
     const emailInputSection = this.createEl('div', formSection, { 'class': 'input-section', id: 'input-section-email' })
